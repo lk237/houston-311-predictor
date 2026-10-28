@@ -1,0 +1,14 @@
+channel,requests,pct_overdue
+Phone,315791,43.4
+Portal,71301,34.6
+SCF,34283,40.0
+Email,18862,36.0
+In Person,3746,42.8
+Not Applicable,903,34.0
+SSOAlerts,306,19.5
+Chat,110,26.0
+App,83,22.2
+Letter,28,42.3
+Social Media,5,20.0
+Fax,3,33.3
+SMS,2,0.0

@@ -1,0 +1,16 @@
+case_type,requests,median_days,pct_overdue
+Missed Garbage Pickup,39287,4.76,40.3
+Water Leak,38303,1.26,24.3
+Missed Recycling Pickup,34225,11.01,66.1
+Missed Heavy Trash Pickup,22103,22.89,69.3
+Water Service,20842,0.17,11.7
+Traffic Signal Maintenance,19569,0.37,38.2
+Sewer Wastewater,17978,0.88,45.3
+Parking Violation,17699,9.37,5.2
+SWM Escalation,15977,51.98,92.9
+Container Replacement,14543,30.16,73.9
+Weeds/Trash/Stagnant Water on Property,14054,199.73,52.1
+Street Condition,12723,3.04,9.7
+Street Hazard,11524,1.22,18.0
+Nuisance On Property,10343,182.07,41.1
+Traffic Signs,10051,5.19,11.8
