@@ -1,0 +1,47 @@
+# Houston 311 Resolution Predictor - configuration
+#
+# Source: City of Houston 311 Service Request Data
+#   https://houstontx.gov/311/servicerequestdata.html
+# Yearly pipe-separated files, updated monthly. Each file starts with a short
+# banner (5 lines), then a header row, then one request per line.
+
+source:
+  base_url: "https://hfdapp.houstontx.gov/311/"
+  # 2025 is a full year, so most requests have had time to close.
+  # Add "311-CRIS-Public-Data-Extract-D365-YTD-compressed-2026.txt" for more data (~250 MB).
+  files:
+    - "311-CRIS-Public-Data-Extract-D365-YTD-compressed-2025.txt"   # ~380 MB
+  banner_lines: 5
+  local_timezone: "America/Chicago"
+
+paths:
+  raw_dir: "data/raw"
+  database: "data/houston_311.duckdb"
+  reports: "reports"
+
+# Our standard name (left) -> column name in the city file (right).
+# Time zones were checked against real rows (Oct 2026):
+#   Created Date UTC = UTC, Resolve By Time = UTC (SLA start + SLA days), Closed Date = Houston local time
+columns:
+  case_id:      "Case Number"
+  status:       "Status"
+  created_utc:  "Created Date UTC"
+  closed_local: "Closed Date"
+  due_utc:      "Resolve By Time"
+  sla:          "SLA Time"            # e.g. "30 Calendar Days"
+  title:        "Title"
+  case_type:    "Incident Case Type"
+  department:   "Department"
+  division:     "Division"
+  district:     "Council District"
+  neighborhood: "Customer SuperNeighborhood"
+  channel:      "Channel"             # Phone, SCF (app/web), Email, In Person, ...
+
+# Statuses that mean the work is NOT finished even if a closed date exists
+# (about 1% of "Routed" cases carry a closed date in the MTD sample).
+not_finished_statuses: ["Routed"]
+
+model:
+  target: "is_overdue"
+  test_size: 0.2
+  random_state: 42
